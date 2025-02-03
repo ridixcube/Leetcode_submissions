@@ -3,7 +3,7 @@
 
 class Solution {
 public:
-    int longestMonotonicSubarray(std::vector<int>& nums) {
+    int longestMonotonicSubarray(vector<int>& nums) {
         if (nums.empty()) return 0;         
         int result = 1; 
         int asc = 1;    
@@ -20,7 +20,7 @@ public:
                 asc = 1;
                 desc = 1;
             }
-            result = std::max(result, std::max(asc, desc));
+            result = max(result, max(asc, desc));
         }
         return result;        
     }

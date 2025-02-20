@@ -7,21 +7,21 @@ using namespace std;
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
-        unordered_map<int, int> counter;
+        unordered_map<int, int> freqMap;
         for (int n : nums) {
-            counter[n]++;
+            freqMap[n]++;
         }
-        vector<pair<int, int>> freqVec(counter.begin(), counter.end());
         
-        sort(freqVec.begin(), freqVec.end(), [](const pair<int, int>& a, const pair<int, int>& b) {
+        vector<pair<int, int>> freqVec(freqMap.begin(), freqMap.end());
+        sort(freqVec.begin(), freqVec.end(), [](const auto& a, const auto& b) {
             return a.second > b.second; 
         });
         
-        vector<int> result;
+        vector<int> res;
         for (int i = 0; i < k; ++i) {
-            result.push_back(freqVec[i].first);
+            res.push_back(freqVec[i].first);
         }
         
-        return result;
+        return res;
     }
 };

@@ -7,9 +7,8 @@ class Solution {
 public:
     void wiggleSort(vector<int>& nums) {
         int n = nums.size();
-
         unordered_map<int, int> count;
-        int maxNum = nums[0], minNum = nums[0];
+        int maxNum = INT_MIN, minNum = INT_MAX;
 
         for (int num : nums) {
             count[num]++;
@@ -18,21 +17,21 @@ public:
         }
 
         vector<int> result(n);
-        int oddIdx = 1, evenIdx = 0;
+        int odd = 1, even = 0;
 
         for (int i = maxNum; i >= minNum; i--) {
-            while (count[i] > 0 && oddIdx < n) { 
-                result[oddIdx] = i;
-                oddIdx += 2;
+            while (count[i] > 0 && odd < n) { 
+                result[odd] = i;
+                odd += 2;
                 count[i]--;
             }
             while (count[i] > 0) { 
-                result[evenIdx] = i;
-                evenIdx += 2;
+                result[even] = i;
+                even += 2;
                 count[i]--;
             }
         }
 
-        nums = result;
+        nums.swap(result);
     }
 };

@@ -1,4 +1,3 @@
-select Employee.name, Bonus.bonus 
-from Employee
+select Employee.name, Bonus.bonus from Employee
 Left Join Bonus ON Employee.empID = Bonus.empID
-Where bonus < 1000 or Bonus IS null;
+Where Bonus IS null or bonus < 1000 ;

@@ -15,14 +15,13 @@ public:
     void inOrderTraversal(TreeNode* root, vector<int>& v) {
         if (root == NULL)
             return;
-        v.push_back(root->val);
         inOrderTraversal(root->left, v);
+        v.push_back(root->val);
         inOrderTraversal(root->right, v);
     }
     int kthSmallest(TreeNode* root, int k) {
         vector<int> v;
         inOrderTraversal(root, v);
-        sort(v.begin(), v.end());
         return v[k - 1];
     }
 };

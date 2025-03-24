@@ -4,8 +4,7 @@ public:
         sort(meetings.begin(), meetings.end());
         int prev = 0;
         for (auto&  meeting : meetings) {
-            int start = max(meeting[0], prev + 1);
-            int length = meeting[1] - start + 1;
+            int length = meeting[1] - (max(meeting[0], prev + 1)) + 1;
             days -= max(length, 0);
             prev = max(prev, meeting[1]);
         }

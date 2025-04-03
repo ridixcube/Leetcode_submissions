@@ -1,16 +1,14 @@
 class Solution {
 public:
     int numSquares(int n) {
-        vector<int> dp(n+1,INT_MAX);
+        vector<int> dp(n + 1, INT_MAX);
         dp[0] = 0;
-        int count = 1;
-        while(count*count <= n){
-            int square = count*count;
-            for(int i = square; i< n+1; i++){
-                dp[i] = min(dp[i - square] + 1, dp[i]);
+        for (int sq = 1; sq * sq <= n; sq++) {
+            int square = sq * sq;
+            for (int i = square; i <= n; i++) {
+                dp[i] = min(dp[i], dp[i - square] + 1);
             }
-            count++;
         }
-        return dp[n];        
+        return dp[n];
     }
 };

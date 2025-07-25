@@ -6,8 +6,7 @@ public:
             res.resize(level + 1);
         }
         res[level].push_back(root -> val);
-        check(root -> left, res, level+1);
-        check(root -> right, res, level+1);
+        check(root -> left, res, level+1), check (root -> right, res, level+1);
 }
         vector<vector<int>> levelOrder(TreeNode* root){
             vector<vector<int>> res;

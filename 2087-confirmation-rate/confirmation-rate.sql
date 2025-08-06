@@ -1,5 +1,9 @@
-select s.user_id,IFNULL(ROUND(sum(action = 'confirmed')/count(*),2), 0.00)  as confirmation_rate
-from Signups s
-left join Confirmations c
-on c.user_id = s.user_id
-group by s.user_id
+SELECT s.user_id, 
+CASE 
+WHEN count(*) > 0 
+THEN ROUND(sum(case when c.action = 'confirmed' then 1 else 0 end) / count(*), 2) 
+ELSE 0.00 
+END as confirmation_rate
+FROM Signups s
+LEFT JOIN Confirmations c ON c.user_id = s.user_id
+GROUP BY s.user_id;
